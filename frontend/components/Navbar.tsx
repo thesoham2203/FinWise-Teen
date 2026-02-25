@@ -3,7 +3,10 @@
 import Link from 'next/link'
 import { useAuth } from '@/components/providers/AuthProvider'
 import { motion } from 'framer-motion'
-import { TrendingUp, LogOut, User } from 'lucide-react'
+import { LogOut, User } from 'lucide-react'
+import BrandLogo from '@/components/BrandLogo'
+
+
 
 export default function Navbar() {
   const { user, signOut } = useAuth()
@@ -11,12 +14,11 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 px-4 py-4">
       <div className="max-w-6xl mx-auto flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center">
-            <TrendingUp size={16} className="text-white" />
-          </div>
-          <span className="font-bold text-lg font-jakarta gradient-text">FinWise Teen</span>
+        <Link href="/" className="flex items-center gap-2 group">
+          <BrandLogo size={36} className="transition-transform group-hover:scale-110" />
+          <span className="font-bold text-xl font-jakarta gradient-text tracking-tight">FinWise Teen</span>
         </Link>
+
 
         <div className="flex items-center gap-3">
           {user ? (

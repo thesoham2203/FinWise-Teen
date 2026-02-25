@@ -3,8 +3,11 @@
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { TrendingUp, LayoutDashboard, User, LogOut, Settings } from 'lucide-react'
+import { LayoutDashboard, User, LogOut, Settings } from 'lucide-react'
 import { useAuth } from '@/components/providers/AuthProvider'
+import BrandLogo from '@/components/BrandLogo'
+
+
 
 const navLinks = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -26,12 +29,11 @@ export default function DashboardNav() {
     <nav className="fixed top-0 left-0 right-0 z-50 glass-card !rounded-none !border-t-0 !border-x-0 !bg-opacity-80">
 
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/dashboard" className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center">
-            <TrendingUp size={14} className="text-white" />
-          </div>
-          <span className="font-bold font-jakarta gradient-text text-sm">FinWise Teen</span>
+        <Link href="/dashboard" className="flex items-center gap-2 group">
+          <BrandLogo size={28} className="transition-transform group-hover:scale-110" />
+          <span className="font-bold font-jakarta gradient-text text-sm tracking-tight">FinWise Teen</span>
         </Link>
+
 
         <div className="flex items-center gap-1">
           {navLinks.map(link => (

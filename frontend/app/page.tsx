@@ -4,6 +4,11 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight, TrendingUp, Brain, Shield, Sparkles, Star, ChevronRight } from 'lucide-react'
 import Navbar from '@/components/Navbar'
+import BrandLogo from '@/components/BrandLogo'
+import GlowCard from '@/components/ui/GlowCard'
+import AnimatedGrid from '@/components/ui/AnimatedGrid'
+
+
 
 const features = [
   {
@@ -53,8 +58,11 @@ export default function LandingPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative pt-28 pb-32 px-4 flex flex-col items-center text-center">
+      <section className="relative pt-28 pb-32 px-4 flex flex-col items-center text-center overflow-hidden">
+        <AnimatedGrid />
+        
         <motion.div
+
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -62,13 +70,13 @@ export default function LandingPage() {
         >
           <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-2 text-xs font-bold text-indigo-300 mb-8 uppercase tracking-widest glow-primary">
             <Sparkles size={12} />
-            Built for Young India · Powered by Gemini AI
+            Built for Young India · Powered by  AI
           </div>
 
           <h1 className="text-6xl md:text-8xl font-bold leading-tight mb-8 font-jakarta tracking-tight">
             Your Money,{' '}
             <span className="gradient-text glow-text">Your Future</span>
-            <br />— Start at 16.
+            <br /> Start Young.
           </h1>
 
           <p className="text-xl md:text-2xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed font-light">
@@ -121,22 +129,19 @@ export default function LandingPage() {
 
         <div className="grid md:grid-cols-3 gap-8">
           {features.map((f, i) => (
-            <motion.div
+            <GlowCard
               key={f.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="glass-card p-8 group cursor-default"
+              className="group cursor-default"
             >
               <div className={`w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 transition-transform group-hover:scale-110 group-hover:rotate-3 ${f.iconColor}`}>
                 <f.icon size={28} className="glow-primary" />
               </div>
               <h3 className="text-xl font-bold mb-3">{f.title}</h3>
               <p className="text-slate-400 leading-relaxed">{f.desc}</p>
-            </motion.div>
+            </GlowCard>
           ))}
         </div>
+
       </section>
 
       {/* Investment types ticker */}

@@ -1,7 +1,9 @@
-'use client'
-
 import { motion } from 'framer-motion'
 import { ExternalLink, TrendingUp } from 'lucide-react'
+import GlowCard from './ui/GlowCard'
+
+
+
 
 interface Asset {
   name: string
@@ -31,16 +33,30 @@ const riskColors: Record<string, string> = {
 }
 
 import { formatCurrency } from '@/lib/utils'
+import MicroSparkline from './ui/MicroSparkline'
 
 export default function AssetCard({ asset, color, index, currency = 'INR' }: AssetCardProps) {
+  // Generate a seed based on asset name for consistent sparkline
+  const seed = asset.name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) / 1000
+
+  // Smart mapping for live symbols
+  const getSymbol = (name: string) => {
+    const n = name.toLowerCase()
+    if (n.includes('nifty')) return 'NIFTY'
+    if (n.includes('gold') || n.includes('sgb')) return 'GOLD'
+    if (n.includes('sensex')) return 'SENSEX'
+    if (n.includes('bond')) return '10Y'
+    return undefined
+  }
+
+  const symbol = getSymbol(asset.name)
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.06 }}
-      className="glass-card p-5 hover:scale-[1.01] transition-transform"
+    <GlowCard
+      glowColor={`${color}33`}
+      className="p-5"
     >
+
       {/* Header */}
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center gap-3">
@@ -73,11 +89,16 @@ export default function AssetCard({ asset, color, index, currency = 'INR' }: Ass
 
       {/* Monthly amount */}
       <div className="flex items-center justify-between mb-3">
-        <span className="text-xs text-slate-500">Monthly Allocation</span>
-        <span className="text-sm font-bold text-white">
-          {formatCurrency(asset.monthlyAmount, currency)}
-        </span>
+        <div className="flex flex-col">
+          <span className="text-xs text-slate-500">Monthly Allocation</span>
+          <span className="text-sm font-bold text-white">
+            {formatCurrency(asset.monthlyAmount, currency)}
+          </span>
+        </div>
+        <MicroSparkline color={color} seed={seed} symbol={symbol} />
       </div>
+
+
 
 
       {/* Return */}
@@ -102,6 +123,7 @@ export default function AssetCard({ asset, color, index, currency = 'INR' }: Ass
           </div>
         </div>
       )}
-    </motion.div>
+    </GlowCard>
+
   )
 }

@@ -48,6 +48,16 @@ class UserProfile(BaseModel):
     target_income_5yr: Optional[float] = 0
     risk_appetite: Optional[str] = "moderate"
     investment_horizon_years: Optional[int] = 10
+
+class ChatRequest(BaseModel):
+    user_id: str
+    message: str
+    context_plan: Optional[dict] = None
+
+class ChatResponse(BaseModel):
+    response: str
+    suggestion: Optional[str] = None
+
     retirement_age: Optional[int] = 55
     target_corpus: Optional[float] = 0
     ai_advisor_type: Optional[str] = "moderate" # chill, strict, pro
@@ -262,6 +272,8 @@ async def get_plan_history(user_id: str):
 
 @router.get("/market/pulse")
 async def market_pulse():
+    logger.info("Market pulse requested")
+
     """
     Live market data for NIFTY 50, SENSEX, Gold, 10Y Bond.
     Uses Yahoo Finance free API via yfinance.
@@ -326,3 +338,71 @@ async def list_instruments():
             {"id": "liquid", "name": "Liquid Fund (Emergency)", "category": "Liquid", "risk": "Very Low", "return_range": "4-6%", "min_investment": 500},
         ]
     }
+
+@router.get("/market/history/{symbol}")
+async def get_market_history(symbol: str, period: str = "7d"):
+    logger.info("Market history requested for: %s", symbol)
+    """
+
+    Get historical data for a symbol.
+    period: 1d, 5d, 7d, 1mo, 3mo, 6mo, 1y, 2y, 5y, 10y, ytd, max
+    """
+    try:
+        import yfinance as yf
+        # Map common indices if needed
+        ticker_map = {
+            "NIFTY": "^NSEI",
+            "SENSEX": "^BSESN",
+            "GOLD": "GC=F",
+            "USDINR": "INR=X"
+        }
+        yf_symbol = ticker_map.get(symbol.upper(), symbol)
+        
+        hist = yf.Ticker(yf_symbol).history(period=period)
+        if hist.empty:
+            raise Exception("No data found")
+            
+        data = [
+            {"date": str(d.date()), "close": round(float(c), 2)}
+            for d, c in zip(hist.index, hist["Close"])
+        ]
+        return {"symbol": symbol, "history": data, "count": len(data)}
+    except Exception as e:
+        logger.warning("History fetch failed for %s: %s", symbol, str(e))
+        # Return empty list instead of 404 to avoid breaking UI
+        return {"symbol": symbol, "history": [], "count": 0, "error": str(e)}
+
+@router.post("/chat", response_model=ChatResponse)
+async def finwise_chat(request: ChatRequest):
+    """
+    Personalized financial chat advisor.
+    Uses Gemini with planning context.
+    """
+    if not model:
+        return ChatResponse(
+            response="I'm currently in offline mode, but I can still tell you that your plan looks solid!",
+            suggestion="Try asking about your P2P lending risk."
+        )
+    
+    try:
+        context = ""
+        if request.context_plan:
+            context = f"User's current financial plan: {json.dumps(request.context_plan)}. "
+        
+        prompt = (
+            f"You are the 'FinWise Genie', a helpful and savvy financial advisor for Indian teens. "
+            f"Use the following context to answer the user's question accurately and helpfully. "
+            f"Keep it professional yet engaging for a young audience. "
+            f"{context}\n\nUser: {request.message}"
+        )
+        
+        response = model.generate_content(prompt)
+        text = response.text.strip()
+        
+        return ChatResponse(response=text, suggestion="Want to know more about compounding?")
+    except Exception as e:
+        logger.error("Chat error: %s", str(e))
+        return ChatResponse(
+            response="Sorry, I'm having a bit of trouble thinking right now. Let's try again in a moment!",
+            suggestion="Ask me about your monthly investment."
+        )

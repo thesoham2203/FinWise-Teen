@@ -1,0 +1,29 @@
+{
+    "name": "FinWise Teen",
+    "short_name": "FinWise",
+    "description": "AI-powered financial planning for young Indians.",
+    "start_url": "/dashboard",
+    "display": "standalone",
+    "background_color": "#080B14",
+    "theme_color": "#6366F1",
+    "icons": [
+        {
+            "src": "/icon.svg",
+            "sizes": "192x192 512x512",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Live Pulse",
+            "url": "/dashboard",
+            "description": "Check real-time market stats"
+        },
+        {
+            "name": "AI Advisor",
+            "url": "/dashboard",
+            "description": "Chat with FinWise Genie"
+        }
+    ]
+}
