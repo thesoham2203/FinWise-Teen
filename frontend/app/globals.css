@@ -1,0 +1,192 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #080B14;
+  --bg-card: #0D1120;
+  --bg-card-hover: #111827;
+  --border: rgba(99, 102, 241, 0.15);
+  --accent: #6366F1;
+  --accent-emerald: #10B981;
+  --accent-amber: #F59E0B;
+  --text-muted: #94A3B8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg-primary);
+  font-family: var(--font-inter), sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-jakarta), sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0D1120;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 3px;
+}
+
+/* Glow effects */
+.glow-indigo {
+  box-shadow: 0 0 40px rgba(99, 102, 241, 0.15);
+}
+
+.glow-emerald {
+  box-shadow: 0 0 40px rgba(16, 185, 129, 0.15);
+}
+
+/* Glass card */
+.glass-card {
+  background: rgba(13, 17, 32, 0.8);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(99, 102, 241, 0.12);
+  border-radius: 16px;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #A78BFA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-emerald {
+  background: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animated gradient border */
+@keyframes border-glow {
+
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Hero gradient orb */
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+/* Step indicator */
+.step-active {
+  background: linear-gradient(135deg, #6366F1, #8B5CF6);
+  color: white;
+}
+
+.step-done {
+  background: #10B981;
+  color: white;
+}
+
+.step-inactive {
+  background: #1E2535;
+  color: #64748B;
+}
+
+/* Input styles */
+.fin-input {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 10px;
+  color: #F1F5F9;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.fin-input:focus {
+  border-color: #6366F1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.fin-input::placeholder {
+  color: #475569;
+}
+
+/* Button styles */
+.btn-primary {
+  background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+  color: white;
+  padding: 0.75rem 2rem;
+  border-radius: 10px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+  font-size: 0.95rem;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: #94A3B8;
+  padding: 0.75rem 2rem;
+  border-radius: 10px;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.95rem;
+}
+
+.btn-ghost:hover {
+  border-color: #6366F1;
+  color: white;
+}
+
+/* Recharts dark theme overrides */
+.recharts-text {
+  fill: #94A3B8 !important;
+}
+
+.recharts-cartesian-axis-line {
+  stroke: rgba(99, 102, 241, 0.15) !important;
+}
+
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: rgba(99, 102, 241, 0.08) !important;
+}

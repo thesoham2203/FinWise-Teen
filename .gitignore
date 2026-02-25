@@ -1,0 +1,113 @@
+# Compiled executables and binaries
+*.exe
+*.app
+*.dmg
+*.pkg
+
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Build outputs and distribution files
+dist/
+build/
+out/
+win-unpacked/
+mac/
+linux-unpacked/
+dist-ssr/
+
+# Electron specific
+electron-builder.yml
+.electron-gyp/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+*.egg-info/
+.pytest_cache/
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+.nyc_output
+
+# IDE and editor files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Package files
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Security files (consider if these should be tracked)
+*.pem
+*.key
+*.cert
+*.crt
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Large data files
+*.vault
+*.json.encrypted
+encrypted_output.json
+

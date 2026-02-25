@@ -1,0 +1,175 @@
+/* Bank Nifty DSS Custom Styles */
+
+:root {
+    --primary-green: #00C853;
+    --primary-red: #FF1744;
+    --primary-blue: #2196F3;
+    --bg-dark: #0e1117;
+    --bg-card: #1e2530;
+    --border-color: #3a4556;
+}
+
+/* Dashboard container */
+.dashboard-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Metric cards */
+.metric-card {
+    background: linear-gradient(135deg, var(--bg-card) 0%, #252d3a 100%);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.metric-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Signal cards */
+.signal-card-bullish {
+    border-left: 4px solid var(--primary-green);
+    background: linear-gradient(90deg, rgba(0, 200, 83, 0.1) 0%, transparent 100%);
+}
+
+.signal-card-bearish {
+    border-left: 4px solid var(--primary-red);
+    background: linear-gradient(90deg, rgba(255, 23, 68, 0.1) 0%, transparent 100%);
+}
+
+.signal-card-neutral {
+    border-left: 4px solid #757575;
+    background: linear-gradient(90deg, rgba(117, 117, 117, 0.1) 0%, transparent 100%);
+}
+
+/* Status badges */
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.badge-success {
+    background: var(--primary-green);
+    color: white;
+}
+
+.badge-danger {
+    background: var(--primary-red);
+    color: white;
+}
+
+.badge-warning {
+    background: #FFC107;
+    color: #333;
+}
+
+.badge-info {
+    background: var(--primary-blue);
+    color: white;
+}
+
+/* Progress bars */
+.progress-bar {
+    height: 8px;
+    border-radius: 4px;
+    background: var(--bg-card);
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.progress-bar-fill-green {
+    background: linear-gradient(90deg, #00C853, #69F0AE);
+}
+
+.progress-bar-fill-red {
+    background: linear-gradient(90deg, #FF1744, #FF8A80);
+}
+
+/* Tables */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th {
+    background: var(--bg-card);
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.data-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.data-table tr:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+/* Animations */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.live-indicator {
+    animation: pulse 2s infinite;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.slide-in {
+    animation: slideIn 0.3s ease;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4a5568;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 10px;
+    }
+    
+    .metric-card {
+        padding: 15px;
+    }
+}
