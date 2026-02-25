@@ -50,6 +50,9 @@ class UserProfile(BaseModel):
     investment_horizon_years: Optional[int] = 10
     retirement_age: Optional[int] = 55
     target_corpus: Optional[float] = 0
+    ai_advisor_type: Optional[str] = "moderate" # chill, strict, pro
+    preferred_currency: Optional[str] = "INR"
+
 
 
 # ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -60,6 +63,10 @@ def build_gemini_prompt(profile: UserProfile) -> str:
 
     return f"""
 You are FinWise — an expert financial advisor specializing in Indian investment markets for young people aged 13-28.
+
+YOUR PERSONALITY:
+- Tone: {profile.ai_advisor_type} (Chill = friendly, approachable; Strict = direct, no-nonsense; Pro = professional, data-driven)
+- Language: Multi-lingual teen-friendly (mix of English and simple financial terms)
 
 USER PROFILE:
 - Name: {profile.full_name}, Age: {profile.age}, City: {profile.city}

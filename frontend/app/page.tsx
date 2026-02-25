@@ -49,66 +49,56 @@ const testimonials = [
 
 export default function LandingPage() {
   return (
-    <main className="min-h-screen bg-[#080B14] overflow-x-hidden">
+    <main className="min-h-screen overflow-x-hidden">
       <Navbar />
 
       {/* Hero */}
-      <section className="relative pt-28 pb-24 px-4 flex flex-col items-center text-center">
-        {/* Orbs */}
-        <div className="hero-orb w-[600px] h-[600px] bg-indigo-600/20 -top-32 -left-32" />
-        <div className="hero-orb w-[400px] h-[400px] bg-violet-600/15 top-0 right-0" />
-        <div className="hero-orb w-[300px] h-[300px] bg-emerald-600/10 bottom-0 left-1/3" />
-
+      <section className="relative pt-28 pb-32 px-4 flex flex-col items-center text-center">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           className="relative z-10 max-w-4xl"
         >
-          <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-2 text-sm text-indigo-300 mb-6">
-            <Sparkles size={14} />
+          <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-2 text-xs font-bold text-indigo-300 mb-8 uppercase tracking-widest glow-primary">
+            <Sparkles size={12} />
             Built for Young India · Powered by Gemini AI
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6 font-jakarta">
+          <h1 className="text-6xl md:text-8xl font-bold leading-tight mb-8 font-jakarta tracking-tight">
             Your Money,{' '}
-            <span className="gradient-text">Your Future</span>
+            <span className="gradient-text glow-text">Your Future</span>
             <br />— Start at 16.
           </h1>
 
-          <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Tell us your salary, EMIs, dreams, and when you want to retire.
-            Our AI builds a personalized investment plan across <strong className="text-white">stocks, bonds, gold, REITs, P2P, and more</strong>.
+          <p className="text-xl md:text-2xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed font-light">
+            Tell us your salary, dreams, and goals.
+            Our AI builds a personalized roadmap across <strong className="text-white">stocks, bonds, gold, and more</strong>.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-5 justify-center">
             <Link href="/signup">
               <motion.button
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className="btn-primary flex items-center gap-2 text-base px-8 py-4"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="btn-primary flex items-center gap-3 text-lg px-10 py-5"
               >
-                Get Your Free Plan <ArrowRight size={18} />
+                Get Started Free <ArrowRight size={20} />
               </motion.button>
-            </Link>
-            <Link href="/login">
-              <button className="btn-ghost text-base px-8 py-4">
-                Already have an account
-              </button>
             </Link>
           </div>
 
           {/* Stats bar */}
-          <div className="flex flex-wrap justify-center gap-8 mt-16 text-center">
+          <div className="flex flex-wrap justify-center gap-12 mt-20 text-center">
             {[
               { value: '15+', label: 'Asset Classes' },
               { value: '₹0', label: 'Cost to Start' },
-              { value: 'AI', label: 'Powered Advice' },
+              { value: 'AI', label: 'Advisor' },
               { value: '∞', label: 'Possibilities' },
             ].map((s) => (
               <div key={s.label}>
-                <div className="text-3xl font-bold gradient-text">{s.value}</div>
-                <div className="text-sm text-slate-500 mt-1">{s.label}</div>
+                <div className="text-4xl font-bold gradient-text mb-1">{s.value}</div>
+                <div className="text-xs font-bold text-slate-500 uppercase tracking-widest">{s.label}</div>
               </div>
             ))}
           </div>
@@ -116,20 +106,20 @@ export default function LandingPage() {
       </section>
 
       {/* Features */}
-      <section className="py-20 px-4 max-w-6xl mx-auto">
+      <section className="py-24 px-4 max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center mb-14"
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold font-jakarta mb-3">
+          <h2 className="text-4xl md:text-5xl font-bold font-jakarta mb-4">
             Everything you need to <span className="gradient-text">build wealth early</span>
           </h2>
-          <p className="text-slate-400">Most teenagers don&#39;t know where to start. We make it simple.</p>
+          <p className="text-slate-400 text-lg">Most teenagers don&#39;t know where to start. We make it simple.</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-8">
           {features.map((f, i) => (
             <motion.div
               key={f.title}
@@ -137,13 +127,13 @@ export default function LandingPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className={`glass-card p-6 bg-gradient-to-br ${f.color} ${f.border} border hover:scale-[1.02] transition-transform`}
+              className="glass-card p-8 group cursor-default"
             >
-              <div className={`w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-4 ${f.iconColor}`}>
-                <f.icon size={22} />
+              <div className={`w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 transition-transform group-hover:scale-110 group-hover:rotate-3 ${f.iconColor}`}>
+                <f.icon size={28} className="glow-primary" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">{f.title}</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">{f.desc}</p>
+              <h3 className="text-xl font-bold mb-3">{f.title}</h3>
+              <p className="text-slate-400 leading-relaxed">{f.desc}</p>
             </motion.div>
           ))}
         </div>

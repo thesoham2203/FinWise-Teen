@@ -19,6 +19,9 @@ CREATE TABLE IF NOT EXISTS public.user_profiles (
   investment_horizon_years INT DEFAULT 10,
   retirement_age INT DEFAULT 55,
   target_corpus NUMERIC DEFAULT 0,
+  ai_advisor_type TEXT DEFAULT 'moderate',
+  preferred_currency TEXT DEFAULT 'INR',
+
   created_at TIMESTAMPTZ DEFAULT now(),
   updated_at TIMESTAMPTZ DEFAULT now(),
   UNIQUE(user_id)

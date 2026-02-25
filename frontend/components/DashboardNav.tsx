@@ -23,7 +23,8 @@ export default function DashboardNav() {
   }
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/5" style={{ background: 'rgba(8,11,20,0.9)', backdropFilter: 'blur(16px)' }}>
+    <nav className="fixed top-0 left-0 right-0 z-50 glass-card !rounded-none !border-t-0 !border-x-0 !bg-opacity-80">
+
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/dashboard" className="flex items-center gap-2">
           <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center">

@@ -17,7 +17,9 @@ interface AssetCardProps {
   asset: Asset
   color: string
   index: number
+  currency?: string
 }
+
 
 const riskColors: Record<string, string> = {
   'Very Low': 'text-emerald-400',
@@ -28,7 +30,10 @@ const riskColors: Record<string, string> = {
   'Very High': 'text-rose-400',
 }
 
-export default function AssetCard({ asset, color, index }: AssetCardProps) {
+import { formatCurrency } from '@/lib/utils'
+
+export default function AssetCard({ asset, color, index, currency = 'INR' }: AssetCardProps) {
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -68,11 +73,12 @@ export default function AssetCard({ asset, color, index }: AssetCardProps) {
 
       {/* Monthly amount */}
       <div className="flex items-center justify-between mb-3">
-        <span className="text-xs text-slate-500">Monthly SIP</span>
-        <span className="text-sm font-semibold text-white">
-          ₹{asset.monthlyAmount.toLocaleString('en-IN')}
+        <span className="text-xs text-slate-500">Monthly Allocation</span>
+        <span className="text-sm font-bold text-white">
+          {formatCurrency(asset.monthlyAmount, currency)}
         </span>
       </div>
+
 
       {/* Return */}
       <div className="flex items-center justify-between mb-4">

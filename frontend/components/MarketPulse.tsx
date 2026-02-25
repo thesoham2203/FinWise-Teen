@@ -27,8 +27,9 @@ function Ticker({ label, value, change, pct }: { label: string; value: string; c
   )
 }
 
-export default function MarketPulse() {
+export default function MarketPulse({ currency = 'INR' }: { currency?: string }) {
   const [data, setData] = useState<MarketData | null>(null)
+
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -78,9 +79,15 @@ export default function MarketPulse() {
         </div>
       ) : data ? (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          <Ticker label="NIFTY 50" value={data.nifty50.value.toLocaleString('en-IN')} change={data.nifty50.change} pct={data.nifty50.changePercent} />
-          <Ticker label="SENSEX" value={data.sensex.value.toLocaleString('en-IN')} change={data.sensex.change} pct={data.sensex.changePercent} />
-          <Ticker label="Gold (₹/10g)" value={`₹${data.gold.value.toLocaleString('en-IN')}`} change={data.gold.change} pct={data.gold.changePercent} />
+          <Ticker label="NIFTY 50" value={data.nifty50.value.toLocaleString(currency === 'INR' ? 'en-IN' : 'en-US')} change={data.nifty50.change} pct={data.nifty50.changePercent} />
+          <Ticker label="SENSEX" value={data.sensex.value.toLocaleString(currency === 'INR' ? 'en-IN' : 'en-US')} change={data.sensex.change} pct={data.sensex.changePercent} />
+          <Ticker 
+            label={currency === 'USD' ? 'Gold (oz)' : 'Gold (₹/10g)'} 
+            value={currency === 'USD' ? `$${(data.gold.value / 83.5).toFixed(0)}` : `₹${data.gold.value.toLocaleString('en-IN')}`} 
+            change={data.gold.change} 
+            pct={data.gold.changePercent} 
+          />
+
           <div className="flex flex-col">
             <div className="text-xs text-slate-500 mb-0.5">10Y Bond Yield</div>
             <div className="font-semibold text-sm">{data.bond10y.value}%</div>

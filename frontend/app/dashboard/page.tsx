@@ -7,10 +7,11 @@ import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, AreaChart, Area, XAx
 import { TrendingUp, TrendingDown, RefreshCw, Share2, Target, Zap } from 'lucide-react'
 import { useAuth } from '@/components/providers/AuthProvider'
 import { supabase } from '@/lib/supabase'
-import { formatINR } from '@/lib/utils'
+import { formatCurrency } from '@/lib/utils'
 import DashboardNav from '@/components/DashboardNav'
 import AssetCard from '@/components/AssetCard'
 import MarketPulse from '@/components/MarketPulse'
+
 
 interface AllocationItem {
   name: string
@@ -131,16 +132,19 @@ export default function DashboardPage() {
     corpus: Math.round((plan.monthly_investment * 12 * (i + 1)) * Math.pow(1.12, i + 1)),
   }))
 
+  const currency = (profile?.preferred_currency as string) || 'INR'
+
   return (
-    <div className="min-h-screen bg-[#080B14]">
+    <div className="min-h-screen">
       <DashboardNav />
-      <div className="pt-20 px-4 pb-12 max-w-7xl mx-auto">
+      <div className="pt-24 px-4 pb-12 max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8"
+          className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10"
         >
+
           <div>
             <h1 className="text-2xl font-bold font-jakarta">
               Your Investment Plan 📊
@@ -173,15 +177,16 @@ export default function DashboardPage() {
           {[
             {
               label: 'Monthly Investment',
-              value: formatINR(plan.monthly_investment),
+              value: formatCurrency(plan.monthly_investment, currency),
               sub: 'Recommended SIP',
               icon: Zap,
               color: 'text-indigo-400',
             },
             {
               label: 'Projected Corpus',
-              value: formatINR(plan.retirement_projection?.projected_corpus || 0),
+              value: formatCurrency(plan.retirement_projection?.projected_corpus || 0, currency),
               sub: `In ${projectionYears} years`,
+
               icon: Target,
               color: 'text-emerald-400',
             },
@@ -205,15 +210,18 @@ export default function DashboardPage() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.05 }}
-              className="glass-card p-4"
+              className="glass-card p-5 group hover:scale-[1.02] transition-all"
             >
-              <div className="flex items-center justify-between mb-2">
-                <div className="text-xs text-slate-500">{m.label}</div>
-                <m.icon size={16} className={m.color} />
+              <div className="flex items-center justify-between mb-3">
+                <div className="text-[10px] uppercase tracking-widest font-bold text-slate-500">{m.label}</div>
+                <m.icon size={16} className={`${m.color} glow-primary`} />
               </div>
-              <div className={`text-2xl font-bold ${m.color}`}>{m.value}</div>
-              <div className="text-xs text-slate-500 mt-1">{m.sub}</div>
+              <div className={`text-2xl font-bold tracking-tight ${m.color} glow-text`}>{m.value}</div>
+              <div className="text-[10px] font-medium text-slate-400 mt-2 flex items-center gap-1">
+                <span className="w-1 h-1 rounded-full bg-slate-600" /> {m.sub}
+              </div>
             </motion.div>
+
           ))}
         </div>
 
@@ -278,11 +286,12 @@ export default function DashboardPage() {
                   </linearGradient>
                 </defs>
                 <XAxis dataKey="year" tick={{ fontSize: 11 }} />
-                <YAxis tickFormatter={(v) => formatINR(v)} tick={{ fontSize: 10 }} width={60} />
+                <YAxis tickFormatter={(v) => formatCurrency(v, currency)} tick={{ fontSize: 10 }} width={60} />
                 <Tooltip
-                  formatter={(v: unknown) => [formatINR(v as number), 'Projected Corpus']}
+                  formatter={(v: unknown) => [formatCurrency(v as number, currency), 'Projected Corpus']}
                   contentStyle={{ background: '#0D1120', border: '1px solid rgba(99,102,241,0.2)', borderRadius: 8, color: '#F1F5F9' }}
                 />
+
                 <Area type="monotone" dataKey="corpus" stroke="#6366F1" fill="url(#corpusGrad)" strokeWidth={2} />
               </AreaChart>
             </ResponsiveContainer>
@@ -291,14 +300,15 @@ export default function DashboardPage() {
 
         {/* Asset class cards */}
         <h3 className="font-semibold mb-4 text-lg">Where to Put Your Money 💰</h3>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
           {plan.allocation.map((asset, i) => (
-            <AssetCard key={asset.name} asset={asset} color={COLORS[i % COLORS.length]} index={i} />
+            <AssetCard key={asset.name} asset={asset} color={COLORS[i % COLORS.length]} index={i} currency={currency} />
           ))}
         </div>
 
         {/* Market Pulse */}
-        <MarketPulse />
+        <MarketPulse currency={currency} />
+
 
         {/* AI Reasoning */}
         <motion.div

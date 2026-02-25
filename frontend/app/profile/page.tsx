@@ -40,26 +40,30 @@ export default function ProfilePage() {
     setTimeout(() => setSaved(false), 3000)
   }
 
+  const currency = profile.preferred_currency || 'INR'
+  const currSym = currency === 'USD' ? '$' : '₹'
+
   const fields = [
     { key: 'full_name', label: 'Full Name', type: 'text' },
     { key: 'age', label: 'Age', type: 'number' },
     { key: 'city', label: 'City', type: 'text' },
-    { key: 'monthly_income', label: 'Monthly Income (₹)', type: 'number' },
-    { key: 'monthly_expenses', label: 'Monthly Expenses (₹)', type: 'number' },
-    { key: 'monthly_emis', label: 'Monthly EMIs (₹)', type: 'number' },
-    { key: 'current_savings', label: 'Current Savings (₹)', type: 'number' },
+    { key: 'monthly_income', label: `Monthly Income (${currSym})`, type: 'number' },
+    { key: 'monthly_expenses', label: `Monthly Expenses (${currSym})`, type: 'number' },
+    { key: 'monthly_emis', label: `Monthly EMIs (${currSym})`, type: 'number' },
+    { key: 'current_savings', label: `Current Savings (${currSym})`, type: 'number' },
     { key: 'dream_job', label: 'Dream Career', type: 'text' },
-    { key: 'target_income_5yr', label: 'Target Income in 5 Years (₹)', type: 'number' },
+    { key: 'target_income_5yr', label: `Target Income in 5 Years (${currSym})`, type: 'number' },
     { key: 'retirement_age', label: 'Retirement Age Goal', type: 'number' },
-    { key: 'target_corpus', label: 'Target Retirement Corpus (₹)', type: 'number' },
+    { key: 'target_corpus', label: `Target Retirement Corpus (${currSym})`, type: 'number' },
   ]
 
-  if (loading) return <div className="min-h-screen bg-[#080B14] flex items-center justify-center"><div className="w-10 h-10 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin" /></div>
+  if (loading) return <div className="min-h-screen flex items-center justify-center"><div className="w-10 h-10 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin" /></div>
 
   return (
-    <div className="min-h-screen bg-[#080B14]">
+    <div className="min-h-screen">
       <DashboardNav />
       <div className="pt-24 px-4 pb-12 max-w-2xl mx-auto">
+
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
           <h1 className="text-2xl font-bold font-jakarta mb-1">Edit Profile</h1>
           <p className="text-slate-400 text-sm mb-8">Update your details and regenerate your AI plan</p>

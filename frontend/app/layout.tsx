@@ -24,7 +24,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${jakarta.variable}`}>
-      <body className="bg-[#080B14] text-white antialiased">
+      <body className="text-white antialiased">
+        <div className="living-bg" aria-hidden="true" />
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
