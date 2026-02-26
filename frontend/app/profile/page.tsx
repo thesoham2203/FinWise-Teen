@@ -8,6 +8,9 @@ import { supabase } from '@/lib/supabase'
 import DashboardNav from '@/components/DashboardNav'
 import { Save, RefreshCw } from 'lucide-react'
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8001/api/v2'
+
+
 export default function ProfilePage() {
   const { user, loading } = useAuth()
   const router = useRouter()
@@ -30,7 +33,8 @@ export default function ProfilePage() {
     setSaving(true)
     await supabase.from('user_profiles').upsert({ ...profile, user_id: user.id }, { onConflict: 'user_id' })
     // Re-generate plan
-    await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/plan/generate`, {
+    await fetch(`${API_BASE_URL}/plan/generate`, {
+
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ ...profile, user_id: user.id }),

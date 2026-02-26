@@ -144,6 +144,12 @@ class Settings(BaseSettings):
     broker_api_key: str = Field(default="your-broker-api-key")
     broker_api_secret: str = Field(default="your-broker-api-secret")
     
+    # ===========================================
+    # AI Configuration
+    # ===========================================
+    gemini_api_key: str = Field(default="", description="Gemini AI API Key")
+
+    
     model_config = {
         "env_file": ".env",
         "env_file_encoding": "utf-8",

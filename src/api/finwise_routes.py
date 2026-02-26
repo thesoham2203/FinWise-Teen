@@ -13,13 +13,13 @@ from uuid import uuid4
 import google.generativeai as genai
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
+from src.config import settings
 
 logger = logging.getLogger(__name__)
 
 # Configure Gemini
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
-if GEMINI_API_KEY:
-    genai.configure(api_key=GEMINI_API_KEY)
+if settings.gemini_api_key:
+    genai.configure(api_key=settings.gemini_api_key)
     model = genai.GenerativeModel("gemini-1.5-pro")
 else:
     model = None
@@ -30,6 +30,7 @@ router = APIRouter(prefix="/api/v2")
 # In-memory store for demo (replace with Supabase in production)
 _plans_store: dict = {}
 _profiles_store: dict = {}
+
 
 
 # ─── Schemas ──────────────────────────────────────────────────────────────────
@@ -48,6 +49,10 @@ class UserProfile(BaseModel):
     target_income_5yr: Optional[float] = 0
     risk_appetite: Optional[str] = "moderate"
     investment_horizon_years: Optional[int] = 10
+    retirement_age: Optional[int] = 55
+    target_corpus: Optional[float] = 0
+    ai_advisor_type: Optional[str] = "moderate"  # chill, strict, pro
+    preferred_currency: Optional[str] = "INR"
 
 class ChatRequest(BaseModel):
     user_id: str
@@ -57,11 +62,6 @@ class ChatRequest(BaseModel):
 class ChatResponse(BaseModel):
     response: str
     suggestion: Optional[str] = None
-
-    retirement_age: Optional[int] = 55
-    target_corpus: Optional[float] = 0
-    ai_advisor_type: Optional[str] = "moderate" # chill, strict, pro
-    preferred_currency: Optional[str] = "INR"
 
 
 

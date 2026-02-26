@@ -5,8 +5,12 @@ import { motion } from 'framer-motion'
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts'
 import { TrendingUp, Share2 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
-import { formatINR } from '@/lib/utils'
+import { formatCurrency } from '@/lib/utils'
+
 import AssetCard from '@/components/AssetCard'
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8001/api/v2'
+
 
 const COLORS = ['#6366F1', '#10B981', '#F59E0B', '#EC4899', '#14B8A6', '#8B5CF6', '#F97316', '#06B6D4']
 
@@ -19,8 +23,9 @@ export default function SharedPlanPage({ params }: { params: { userId: string } 
   useEffect(() => {
     const fetch_ = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/plan/${params.userId}/latest`)
+        const res = await fetch(`${API_BASE_URL}/plan/${params.userId}/latest`)
         if (res.ok) setPlan(await res.json())
+
         const { data } = await supabase.from('user_profiles').select('full_name,occupation,risk_appetite,retirement_age').eq('user_id', params.userId).single()
         setProfile(data)
       } catch { /* empty */ }
@@ -75,13 +80,14 @@ export default function SharedPlanPage({ params }: { params: { userId: string } 
           <div className="grid grid-cols-2 gap-4 mb-8">
             <div className="glass-card p-4 text-center">
               <div className="text-slate-400 text-sm mb-1">Monthly Investment</div>
-              <div className="text-2xl font-bold gradient-text">{formatINR(plan.monthly_investment)}</div>
+              <div className="text-2xl font-bold gradient-text">{formatCurrency(plan.monthly_investment)}</div>
             </div>
             <div className="glass-card p-4 text-center">
               <div className="text-slate-400 text-sm mb-1">Projected Corpus</div>
-              <div className="text-2xl font-bold text-emerald-400">{formatINR(plan.retirement_projection?.projected_corpus || 0)}</div>
+              <div className="text-2xl font-bold text-emerald-400">{formatCurrency(plan.retirement_projection?.projected_corpus || 0)}</div>
             </div>
           </div>
+
 
           {/* Pie */}
           <div className="glass-card p-6 mb-6">

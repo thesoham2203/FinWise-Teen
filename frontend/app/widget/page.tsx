@@ -4,6 +4,9 @@ import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Shield, TrendingUp, RefreshCw, Zap } from 'lucide-react'
 import { formatCurrency } from '@/lib/utils'
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8001/api/v2'
+
 import BlueprintGrid from '@/components/ui/BlueprintGrid'
 
 export default function WidgetPage() {
@@ -12,8 +15,9 @@ export default function WidgetPage() {
   useEffect(() => {
     const fetchPulse = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/market/pulse`)
+        const res = await fetch(`${API_BASE_URL}/market/pulse`)
         if (res.ok) {
+
           const data = await res.json()
           setPulse(data)
         }

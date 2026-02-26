@@ -1,134 +1,129 @@
 # FinWise Teen 💰
 
-> AI-powered financial planning for young Indians — built for teenagers and young adults who want to start investing smart.
+> **AI-Powered Financial Planning for the Next Generation of India.**  
+> Built for teenagers and young adults to start their wealth journey with data-driven, personalised investment plans.
 
-FinWise Teen lets you enter your income, expenses, EMIs, and life goals, then uses **Google Gemini AI** to generate a personalised investment plan across stocks, mutual funds, gold, bonds, REITs, P2P lending, and more — all in Indian context (INR, NIFTY, SGB, etc.).
+FinWise Teen simplifies the complex world of personal finance for young Indians. By entering your income, expenses, and life ambitions, our **Google Gemini-powered AI** generates a sophisticated investment strategy across 8+ asset classes, including stocks, mutual funds, gold, bonds, REITs, and more — all tailored to the Indian economic context.
 
 ---
 
 ## ✨ Features
 
-- **AI Investment Plan** — Gemini generates a personalised allocation across 8+ asset classes based on your profile
-- **Live Market Pulse** — Real-time NIFTY 50, SENSEX, Gold & 10Y Bond yield (Yahoo Finance)
-- **5-Step Onboarding** — Income, expenses, ambitions, risk appetite, and retirement goal
-- **Wealth Projection** — Visualise your corpus growth over time with interactive charts
-- **Share Your Plan** — Public shareable link (`/plan/[userId]`) for anyone to view
-- **Google OAuth** — One-click sign in via Google
-- **Indian-first** — SGBs, REITs, InvITs, PPF, NPS, P2P lending, US ETFs — assets most Indians miss
+- **🤖 AI-Driven Personalisation**: Uses Gemini 1.5 Pro to create bespoke portfolios based on your unique risk profile and goals.
+- **📊 Interactive Wealth Projection**: Visualise your financial future with live compounding simulations (adjusted for inflation & taxes).
+- **🕹️ Gamified Finance**: Earn digital badges like "Emergency Expert" and "High Flyer" as you reach financial milestones.
+- **⚖️ Dynamic Tweak Sliders**: Adjust your allocation in real-time and see how it impacts your long-term wealth.
+- **🛡️ Emergency Fund "Runway"**: A dedicated "Survival Timer" showing exactly how many months your savings will cover.
+- **📈 Live Market Pulse**: Real-time tracking of NIFTY 50, SENSEX, Gold, and 10Y Bond yields via Yahoo Finance.
+- **🧞‍♂️ FinWise Genie**: A context-aware AI chatbot that knows your specific plan and answers your financial queries.
+- **🔗 Smart Sharing & QR**: Generate a public shareable link and a **QR Code** to show off your financial plan.
 
 ---
 
-## 🏗️ Stack
+## 🏗️ Technical Architecture
 
-| Layer | Tech |
-|-------|------|
-| Frontend | Next.js 14 (App Router), TypeScript, Tailwind CSS |
-| Charts | Recharts, Framer Motion |
-| Backend | FastAPI (Python) |
-| AI | Google Gemini 1.5 Pro |
-| Database | Supabase (PostgreSQL + Auth) |
-| Market Data | Yahoo Finance (yfinance, free) |
+### System Flow
+```mermaid
+graph TD
+    A[User] -->|Onboarding/Form| B(Next.js Frontend)
+    B -->|POST /profile| C[Supabase Auth & DB]
+    B -->|POST /plan/generate| D[FastAPI Backend]
+    D -->|Request Analysis| E[Google Gemini 1.5 Pro]
+    D -->|Fetch Market Data| F[Yahoo Finance API]
+    E -->|Structured JSON Plan| D
+    D -->|Persist Plan| C
+    D -->|Return Plan| B
+    B -->|Display| G[Interactive Dashboard]
+    G -->|Tweak Portfolios| D
+    G -->|Chat| H[FinWise Genie]
+    H -->|Context-Aware QA| D
+```
+
+### Component Breakdown
+- **Frontend**: Next.js 14, TypeScript, Tailwind CSS, Framer Motion, Recharts.
+- **Backend**: FastAPI, Pydantic (v2), Uvicorn.
+- **Database**: Supabase (PostgreSQL, Auth).
+- **AI/ML**: Google Generative AI (Gemini SDK).
 
 ---
 
-## � How to Run
+## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 18+
-- Python 3.10+
-- A [Supabase](https://supabase.com) project
-- A [Gemini API key](https://aistudio.google.com) (free)
+- **Node.js**: 18.x or higher
+- **Python**: 3.10.x or higher
+- **Supabase Account**: A project with `user_profiles` and `investment_plans` tables.
+- **Gemini API Key**: From [Google AI Studio](https://aistudio.google.com).
 
-### 1. Clone & Configure
+### 1. Configuration
 
-```bash
-# Root .env — backend config
-cp .env.example .env
-```
-
-Edit `d:\trial-BNIFTY\.env`:
+**Backend (`/` root)**: Create a `.env` file:
 ```env
-GEMINI_API_KEY=your-gemini-api-key-here
-SUPABASE_URL=https://your-project.supabase.co
-SUPABASE_KEY=your-anon-key-here
+GEMINI_API_KEY=your_key_here
+SUPABASE_URL=your_supabase_url
+SUPABASE_KEY=your_service_role_or_anon_key
 ```
 
-Edit `d:\trial-BNIFTY\frontend\.env.local`:
+**Frontend (`/frontend`)**: Create a `.env.local` file:
 ```env
-NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key-here
-NEXT_PUBLIC_API_BASE_URL=http://localhost:8000/api/v2
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
+NEXT_PUBLIC_API_BASE_URL=http://localhost:PORT_NUMBER/api/v2
 ```
 
-### 2. Set Up Database
+### 2. Installation & Execution
 
-Run the SQL in `supabase_schema.sql` via your **Supabase Dashboard → SQL Editor**.
-
-Enable **Google OAuth**: Supabase → Authentication → Providers → Google (add your Google Cloud OAuth credentials, redirect URI: `https://your-project.supabase.co/auth/v1/callback`).
-
-### 3. Start the Backend
-
+#### Backend (FastAPI)
 ```powershell
-# From d:\trial-BNIFTY
-.\venv\Scripts\python run_api.py
+# From the root directory
+python -m venv venv
+.\venv\Scripts\activate
+pip install -r requirements.txt
+python run_api.py
 ```
-→ API running at **http://localhost:8000**  
-→ Swagger docs at **http://localhost:8000/docs**
+*API will be live at `http://localhost:PORT_NUMBER/api/v2`*
 
-### 4. Start the Frontend
-
+#### Frontend (Next.js)
 ```powershell
-# From d:\trial-BNIFTY\frontend
+# From the /frontend directory
 npm install
 npm run dev
 ```
-→ App running at **http://localhost:3000**
+*App will be live at `http://localhost:PORT_NUMBER`*
 
 ---
 
-## � Project Structure
+## 📁 Project Structure
 
-```
-trial-BNIFTY/
-├── frontend/                  # Next.js app
-│   ├── app/
-│   │   ├── page.tsx           # Landing page
-│   │   ├── login/             # Login page
-│   │   ├── signup/            # Signup page
-│   │   ├── onboard/           # 5-step onboarding wizard
-│   │   ├── dashboard/         # Main dashboard
-│   │   ├── profile/           # Edit profile & regenerate plan
-│   │   └── plan/[userId]/     # Public shareable plan
-│   ├── components/
-│   │   ├── DashboardNav.tsx
-│   │   ├── AssetCard.tsx
-│   │   ├── MarketPulse.tsx
-│   │   └── providers/
-│   └── lib/
-│       ├── supabase.ts
-│       └── utils.ts
-├── src/api/
-│   └── finwise_routes.py      # All FastAPI v2 endpoints
-├── run_api.py                 # FastAPI entry point
-├── supabase_schema.sql        # DB schema (run once in Supabase)
-└── .env                       # Backend environment variables
+```text
+FinWise-Teen/
+├── frontend/                  # Next.js Application
+│   ├── app/                   # App Router (Dashboard, Onboarding, Profile)
+│   ├── components/            # UI Components (Genie, MarketPulse, Charts)
+│   ├── lib/                   # Utils, Supabase Client
+│   └── public/                # Assets & Icons
+├── src/                       # Backend Logic
+│   ├── api/                   # FastAPI Routes & Models
+│   ├── ingestion/             # Data processing (market data)
+│   └── risk/                  # Risk assessment logic
+├── run_api.py                 # Backend Entry Point
+├── supabase_schema.sql        # DB Initialization Script
+└── requirements.txt           # Python Dependencies
 ```
 
 ---
 
-## 🔌 API Endpoints
+## 🔌 API Reference
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `GET` | `/api/v2/health` | Health check |
-| `POST` | `/api/v2/plan/generate` | Generate AI investment plan |
-| `GET` | `/api/v2/plan/{userId}/latest` | Get user's latest plan |
-| `GET` | `/api/v2/market/pulse` | Live NIFTY, SENSEX, Gold, Bond data |
-| `GET` | `/api/v2/market/instruments` | List of all supported investment types |
-| `POST` | `/api/v2/profile` | Save user profile |
+| Endpoint | Method | Description |
+|---|---|---|
+| `/api/v2/health` | `GET` | System health check & Gemini status. |
+| `/api/v2/plan/generate` | `POST` | Generates a new AI investment plan. |
+| `/api/v2/plan/{userId}/latest` | `GET` | Fetches the most recent plan for a user. |
+| `/api/v2/chat` | `POST` | AI Chatbot endpoint (Plan-aware). |
+| `/api/v2/market/pulse` | `GET` | Live indices and commodity prices. |
 
 ---
 
-## ⚠️ Disclaimer
-
-FinWise Teen is for **educational purposes only**. This is not SEBI-registered financial advice. Always consult a qualified financial advisor before investing.
+## ⚖️ Disclaimer
+*FinWise Teen is an educational tool. All investment plans are generated by AI and do not constitute professional financial advice. Always perform your own research or consult a SEBI-registered advisor before investing.*

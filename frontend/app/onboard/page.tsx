@@ -7,6 +7,8 @@ import { ChevronRight, ChevronLeft, Briefcase, Wallet, Star, Target, Sunrise } f
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/components/providers/AuthProvider'
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8001/api/v2'
+
 const steps = [
   { id: 1, title: 'About You', icon: Briefcase, desc: 'Let\'s get to know you' },
   { id: 2, title: 'Income & Expenses', icon: Wallet, desc: 'Your monthly numbers' },
@@ -72,15 +74,23 @@ export default function OnboardPage() {
     try {
       await supabase.from('user_profiles').upsert(payload, { onConflict: 'user_id' })
       // Trigger plan generation
-      await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/plan/generate`, {
+      const planRes = await fetch(`${API_BASE_URL}/plan/generate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       })
+      // Cache plan for FinWise Genie chatbot context
+      if (planRes.ok) {
+        const planData = await planRes.json()
+        localStorage.setItem('finwise_plan', JSON.stringify(planData))
+        localStorage.setItem('finwise_user_id', user.id)
+      }
       router.push('/dashboard')
-    } catch {
+    } catch (err) {
+      console.error('Plan generation failed:', err)
       setLoading(false)
     }
+
   }
 
   return (

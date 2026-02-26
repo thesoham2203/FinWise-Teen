@@ -8,11 +8,11 @@ interface GlowCardProps {
   glowColor?: string
 }
 
-export default function GlowCard({ children, className = "", glowColor = "rgba(99, 102, 241, 0.4)" }: GlowCardProps) {
+export default function GlowCard({ children, className = "p-6", glowColor = "rgba(99, 102, 241, 0.4)" }: GlowCardProps) {
   return (
     <motion.div
       whileHover={{ scale: 1.01, translateY: -2 }}
-      className={`glass-card p-6 relative group overflow-hidden ${className}`}
+      className={`glass-card relative group overflow-hidden ${className}`}
     >
       <BlueprintGrid />
 

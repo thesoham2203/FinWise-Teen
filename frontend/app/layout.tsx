@@ -36,9 +36,11 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${jakarta.variable}`}>
       <body className="text-white antialiased">
         <div className="living-bg" aria-hidden="true" />
-        <AuthProvider>{children}</AuthProvider>
-        <MarketTicker />
-        <FinWiseGenie />
+        <AuthProvider>
+          {children}
+          <MarketTicker />
+          <FinWiseGenie />
+        </AuthProvider>
       </body>
 
 

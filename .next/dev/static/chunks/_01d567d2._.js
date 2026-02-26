@@ -99,7 +99,7 @@ __turbopack_context__.s([
     ()=>getMarketPulse
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
-const API_BASE_URL = ("TURBOPACK compile-time value", "http://localhost:8001/api/v2") || 'http://localhost:8000/api/v2';
+const API_BASE_URL = ("TURBOPACK compile-time value", "http://localhost:8001/api/v2") || 'http://localhost:8001/api/v2';
 async function getMarketPulse() {
     try {
         const res = await fetch(`${API_BASE_URL}/market/pulse`, {
@@ -514,6 +514,7 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
+const API_BASE_URL = ("TURBOPACK compile-time value", "http://localhost:8001/api/v2") || 'http://localhost:8001/api/v2';
 function FinWiseGenie() {
     _s();
     const [isOpen, setIsOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
@@ -554,7 +555,7 @@ function FinWiseGenie() {
             // Get context from local storage if available
             const storedPlan = localStorage.getItem('finwise_plan');
             const context_plan = storedPlan ? JSON.parse(storedPlan) : null;
-            const response = await fetch(`${("TURBOPACK compile-time value", "http://localhost:8001/api/v2")}/chat`, {
+            const response = await fetch(`${API_BASE_URL}/chat`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -610,7 +611,7 @@ function FinWiseGenie() {
                             size: 24
                         }, void 0, false, {
                             fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                            lineNumber: 73,
+                            lineNumber: 77,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -618,18 +619,18 @@ function FinWiseGenie() {
                             children: "Ask Genie 🧞‍♂️"
                         }, void 0, false, {
                             fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                            lineNumber: 74,
+                            lineNumber: 78,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                    lineNumber: 66,
+                    lineNumber: 70,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                lineNumber: 64,
+                lineNumber: 68,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -655,7 +656,7 @@ function FinWiseGenie() {
                             className: "absolute inset-0 bg-gradient-to-b from-indigo-500/10 to-transparent pointer-events-none"
                         }, void 0, false, {
                             fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                            lineNumber: 90,
+                            lineNumber: 94,
                             columnNumber: 14
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -670,12 +671,12 @@ function FinWiseGenie() {
                                                 size: 18
                                             }, void 0, false, {
                                                 fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                                lineNumber: 96,
+                                                lineNumber: 100,
                                                 columnNumber: 22
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                            lineNumber: 95,
+                                            lineNumber: 99,
                                             columnNumber: 20
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -685,7 +686,7 @@ function FinWiseGenie() {
                                                     children: "FinWise Genie"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                                    lineNumber: 99,
+                                                    lineNumber: 103,
                                                     columnNumber: 22
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -695,7 +696,7 @@ function FinWiseGenie() {
                                                             className: "w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                                            lineNumber: 101,
+                                                            lineNumber: 105,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -703,25 +704,25 @@ function FinWiseGenie() {
                                                             children: "Always Online"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                                            lineNumber: 102,
+                                                            lineNumber: 106,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                                    lineNumber: 100,
+                                                    lineNumber: 104,
                                                     columnNumber: 22
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                            lineNumber: 98,
+                                            lineNumber: 102,
                                             columnNumber: 20
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                    lineNumber: 94,
+                                    lineNumber: 98,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -731,18 +732,18 @@ function FinWiseGenie() {
                                         size: 20
                                     }, void 0, false, {
                                         fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                        lineNumber: 110,
+                                        lineNumber: 114,
                                         columnNumber: 19
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                    lineNumber: 106,
+                                    lineNumber: 110,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                            lineNumber: 93,
+                            lineNumber: 97,
                             columnNumber: 14
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -755,12 +756,12 @@ function FinWiseGenie() {
                                             children: m.content
                                         }, void 0, false, {
                                             fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                            lineNumber: 118,
+                                            lineNumber: 122,
                                             columnNumber: 21
                                         }, this)
                                     }, i, false, {
                                         fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                        lineNumber: 117,
+                                        lineNumber: 121,
                                         columnNumber: 19
                                     }, this)),
                                 loading && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -772,45 +773,45 @@ function FinWiseGenie() {
                                                 className: "w-1.5 h-1.5 rounded-full bg-indigo-500 animate-bounce"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                                lineNumber: 130,
+                                                lineNumber: 134,
                                                 columnNumber: 25
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "w-1.5 h-1.5 rounded-full bg-indigo-500 animate-bounce delay-75"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                                lineNumber: 131,
+                                                lineNumber: 135,
                                                 columnNumber: 25
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "w-1.5 h-1.5 rounded-full bg-indigo-500 animate-bounce delay-150"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                                lineNumber: 132,
+                                                lineNumber: 136,
                                                 columnNumber: 25
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                        lineNumber: 129,
+                                        lineNumber: 133,
                                         columnNumber: 22
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                    lineNumber: 128,
+                                    lineNumber: 132,
                                     columnNumber: 20
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     ref: chatEndRef
                                 }, void 0, false, {
                                     fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                    lineNumber: 136,
+                                    lineNumber: 140,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                            lineNumber: 115,
+                            lineNumber: 119,
                             columnNumber: 14
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -828,7 +829,7 @@ function FinWiseGenie() {
                                             className: "w-full bg-white/5 border border-white/10 rounded-2xl py-3 pl-4 pr-12 text-sm focus:outline-none focus:border-indigo-500/50 transition-all font-jakarta"
                                         }, void 0, false, {
                                             fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                            lineNumber: 142,
+                                            lineNumber: 146,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -839,18 +840,18 @@ function FinWiseGenie() {
                                                 size: 16
                                             }, void 0, false, {
                                                 fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                                lineNumber: 155,
+                                                lineNumber: 159,
                                                 columnNumber: 21
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                            lineNumber: 150,
+                                            lineNumber: 154,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                    lineNumber: 141,
+                                    lineNumber: 145,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -858,30 +859,30 @@ function FinWiseGenie() {
                                     children: "Powered by Gemini 1.5 Pro · Plan Aware"
                                 }, void 0, false, {
                                     fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                    lineNumber: 158,
+                                    lineNumber: 162,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                            lineNumber: 140,
+                            lineNumber: 144,
                             columnNumber: 14
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                    lineNumber: 83,
+                    lineNumber: 87,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                lineNumber: 81,
+                lineNumber: 85,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/ui/FinWiseGenie.tsx",
-        lineNumber: 63,
+        lineNumber: 67,
         columnNumber: 5
     }, this);
 }

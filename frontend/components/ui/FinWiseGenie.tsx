@@ -4,13 +4,18 @@ import React, { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MessageCircle, X, Send, Sparkles, Bot, User, ChevronDown } from 'lucide-react'
 import BrandLogo from '@/components/BrandLogo'
+import { useAuth } from '@/components/providers/AuthProvider'
 
 interface Message {
   role: 'assistant' | 'user'
   content: string
 }
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8001/api/v2'
+
 export default function FinWiseGenie() {
+  const { user } = useAuth()
+
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([
     { role: 'assistant', content: "Hi! I'm your FinWise Genie. 🧞‍♂️ Ask me anything about your investment plan, taxes, or compounding!" }
@@ -36,15 +41,15 @@ export default function FinWiseGenie() {
     setLoading(true)
 
     try {
-      // Get context from local storage if available
+      // Get plan context from localStorage (saved by dashboard/onboard pages)
       const storedPlan = localStorage.getItem('finwise_plan')
       const context_plan = storedPlan ? JSON.parse(storedPlan) : null
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/chat`, {
+      const response = await fetch(`${API_BASE_URL}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          user_id: 'demo_user',
+          user_id: user?.id || 'anonymous',
           message: userMsg,
           context_plan
         })

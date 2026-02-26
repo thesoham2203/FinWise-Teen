@@ -4,6 +4,9 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { TrendingUp, TrendingDown, Minus } from 'lucide-react'
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8001/api/v2'
+
+
 interface MarketData {
   nifty50: { value: number; change: number; changePercent: number }
   sensex: { value: number; change: number; changePercent: number }
@@ -35,8 +38,9 @@ export default function MarketPulse({ currency = 'INR' }: { currency?: string })
   useEffect(() => {
     const fetchMarket = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/market/pulse`)
+        const res = await fetch(`${API_BASE_URL}/market/pulse`)
         if (res.ok) {
+
           const d = await res.json()
           setData(d)
         }
