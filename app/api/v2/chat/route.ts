@@ -55,7 +55,7 @@ Your personality:
 Never recommend specific stocks for speculative trading. Always remind users this is educational advice, not SEBI-registered financial advice.`
 
     const model = genAI.getGenerativeModel({
-      model: 'gemini-1.5-flash',
+      model: 'gemini-2.5-flash',
       systemInstruction: systemPrompt,
     })
 

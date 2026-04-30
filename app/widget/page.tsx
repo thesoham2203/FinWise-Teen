@@ -50,10 +50,10 @@ export default function WidgetPage() {
                 <p className="text-[8px] text-slate-500 uppercase font-bold tracking-tighter mb-1">NIFTY 50</p>
                 <div className="flex items-baseline gap-2">
                   <span className="text-3xl font-bold font-mono tracking-tighter">
-                    {pulse?.find((p: any) => p.symbol === 'NIFTY')?.price?.toLocaleString() || '23,456'}
+                    {pulse?.nifty50?.value?.toLocaleString() || '23,456'}
                   </span>
-                  <span className="text-xs text-emerald-400 font-bold">
-                    +{pulse?.find((p: any) => p.symbol === 'NIFTY')?.change_percent?.toFixed(2) || '0.45'}%
+                  <span className={`text-xs font-bold ${pulse?.nifty50?.changePercent < 0 ? 'text-rose-400' : 'text-emerald-400'}`}>
+                    {pulse?.nifty50?.changePercent > 0 ? '+' : ''}{pulse?.nifty50?.changePercent?.toFixed(2) || '0.45'}%
                   </span>
                 </div>
              </div>
