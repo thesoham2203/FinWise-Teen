@@ -6,6 +6,9 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function formatCurrency(amount: number, currency: string = 'INR'): string {
+    if (amount === undefined || amount === null || Number.isNaN(amount)) {
+        return currency === 'USD' ? '$0' : '₹0'
+    }
     if (currency === 'USD') {
         if (amount >= 1000000) return `$${(amount / 1000000).toFixed(1)}M`
         if (amount >= 1000) return `$${(amount / 1000).toFixed(1)}K`
@@ -19,6 +22,7 @@ export function formatCurrency(amount: number, currency: string = 'INR'): string
 }
 
 export function formatFullCurrency(amount: number, currency: string = 'INR'): string {
+    if (amount === undefined || amount === null || Number.isNaN(amount)) return currency === 'USD' ? '$0' : '₹0'
     return new Intl.NumberFormat(currency === 'INR' ? 'en-IN' : 'en-US', {
         style: 'currency',
         currency: currency,
