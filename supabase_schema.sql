@@ -21,7 +21,6 @@ CREATE TABLE IF NOT EXISTS public.user_profiles (
   target_corpus NUMERIC DEFAULT 0,
   ai_advisor_type TEXT DEFAULT 'moderate',
   preferred_currency TEXT DEFAULT 'INR',
-
   created_at TIMESTAMPTZ DEFAULT now(),
   updated_at TIMESTAMPTZ DEFAULT now(),
   UNIQUE(user_id)
@@ -35,8 +34,11 @@ CREATE TABLE IF NOT EXISTS public.investment_plans (
   allocation JSONB,
   monthly_investment NUMERIC,
   reasoning TEXT,
+  emergency_fund JSONB,
   retirement_projection JSONB,
+  badges TEXT[],
   is_public BOOLEAN DEFAULT false,
+  created_at TIMESTAMPTZ DEFAULT now(),
   generated_at TIMESTAMPTZ DEFAULT now()
 );
 
@@ -54,6 +56,9 @@ CREATE POLICY "Users view own plans" ON public.investment_plans
 
 CREATE POLICY "Users insert own plans" ON public.investment_plans
   FOR INSERT WITH CHECK (auth.uid() = user_id);
+
+-- NOTE: The service_role key (used by server-side Next.js API routes)
+-- automatically bypasses RLS in Supabase — no extra policy needed.
 
 -- Update timestamp trigger
 CREATE OR REPLACE FUNCTION update_updated_at()

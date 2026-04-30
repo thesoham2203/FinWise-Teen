@@ -9,8 +9,8 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/@supabase/supabase-js/dist/index.mjs [app-client] (ecmascript) <locals>");
 ;
-const supabaseUrl = ("TURBOPACK compile-time value", "https://kscjdpepwuuyvstttrfy.supabase.co");
-const supabaseAnonKey = ("TURBOPACK compile-time value", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtzY2pkcGVwd3V1eXZzdHR0cmZ5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjcyMDAzNjMsImV4cCI6MjA4Mjc3NjM2M30.aJIqlW1PdWUo8DHKIiYqqLtA7l-PTDSyxZDwh72KvLk");
+const supabaseUrl = ("TURBOPACK compile-time value", "https://txzvzhbsqwzkqbezvpti.supabase.co");
+const supabaseAnonKey = ("TURBOPACK compile-time value", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR4enZ6aGJzcXd6a3FiZXp2cHRpIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NDM1ODQxMSwiZXhwIjoyMDg5OTM0NDExfQ.8oeW7Ojc_Qjw74uQQLn-bgFM6d9VlIakSgHkb-xvDyw");
 const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createClient"])(supabaseUrl, supabaseAnonKey);
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
@@ -30,7 +30,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/supabase.ts [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.signature();
-'use client';
+"use client";
 ;
 ;
 const AuthContext = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createContext"])({
@@ -47,6 +47,13 @@ function AuthProvider({ children }) {
             __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].auth.getSession().then({
                 "AuthProvider.useEffect": ({ data: { session } })=>{
                     setUser(session?.user ?? null);
+                }
+            }["AuthProvider.useEffect"]).catch({
+                "AuthProvider.useEffect": ()=>{
+                    setUser(null);
+                }
+            }["AuthProvider.useEffect"]).finally({
+                "AuthProvider.useEffect": ()=>{
                     setLoading(false);
                 }
             }["AuthProvider.useEffect"]);
@@ -72,7 +79,7 @@ function AuthProvider({ children }) {
         children: children
     }, void 0, false, {
         fileName: "[project]/components/providers/AuthProvider.tsx",
-        lineNumber: 42,
+        lineNumber: 49,
         columnNumber: 5
     }, this);
 }
@@ -98,8 +105,7 @@ __turbopack_context__.s([
     "getMarketPulse",
     ()=>getMarketPulse
 ]);
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
-const API_BASE_URL = ("TURBOPACK compile-time value", "http://localhost:8001/api/v2") || 'http://localhost:8001/api/v2';
+const API_BASE_URL = ("TURBOPACK compile-time truthy", 1) ? '/api/v2' : "TURBOPACK unreachable";
 async function getMarketPulse() {
     try {
         const res = await fetch(`${API_BASE_URL}/market/pulse`, {
@@ -507,6 +513,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sparkles$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Sparkles$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/sparkles.js [app-client] (ecmascript) <export default as Sparkles>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$down$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDown$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/chevron-down.js [app-client] (ecmascript) <export default as ChevronDown>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$BrandLogo$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/BrandLogo.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$providers$2f$AuthProvider$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/providers/AuthProvider.tsx [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 'use client';
@@ -514,9 +521,11 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
+;
 const API_BASE_URL = ("TURBOPACK compile-time value", "http://localhost:8001/api/v2") || 'http://localhost:8001/api/v2';
 function FinWiseGenie() {
     _s();
+    const { user } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$providers$2f$AuthProvider$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuth"])();
     const [isOpen, setIsOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [messages, setMessages] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([
         {
@@ -552,7 +561,7 @@ function FinWiseGenie() {
             ]);
         setLoading(true);
         try {
-            // Get context from local storage if available
+            // Get plan context from localStorage (saved by dashboard/onboard pages)
             const storedPlan = localStorage.getItem('finwise_plan');
             const context_plan = storedPlan ? JSON.parse(storedPlan) : null;
             const response = await fetch(`${API_BASE_URL}/chat`, {
@@ -561,7 +570,7 @@ function FinWiseGenie() {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    user_id: 'demo_user',
+                    user_id: user?.id || 'anonymous',
                     message: userMsg,
                     context_plan
                 })
@@ -611,7 +620,7 @@ function FinWiseGenie() {
                             size: 24
                         }, void 0, false, {
                             fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                            lineNumber: 77,
+                            lineNumber: 78,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -619,18 +628,18 @@ function FinWiseGenie() {
                             children: "Ask Genie 🧞‍♂️"
                         }, void 0, false, {
                             fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                            lineNumber: 78,
+                            lineNumber: 79,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                    lineNumber: 70,
+                    lineNumber: 71,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                lineNumber: 68,
+                lineNumber: 69,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -656,7 +665,7 @@ function FinWiseGenie() {
                             className: "absolute inset-0 bg-gradient-to-b from-indigo-500/10 to-transparent pointer-events-none"
                         }, void 0, false, {
                             fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                            lineNumber: 94,
+                            lineNumber: 95,
                             columnNumber: 14
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -671,12 +680,12 @@ function FinWiseGenie() {
                                                 size: 18
                                             }, void 0, false, {
                                                 fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                                lineNumber: 100,
+                                                lineNumber: 101,
                                                 columnNumber: 22
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                            lineNumber: 99,
+                                            lineNumber: 100,
                                             columnNumber: 20
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -686,7 +695,7 @@ function FinWiseGenie() {
                                                     children: "FinWise Genie"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                                    lineNumber: 103,
+                                                    lineNumber: 104,
                                                     columnNumber: 22
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -696,7 +705,7 @@ function FinWiseGenie() {
                                                             className: "w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                                            lineNumber: 105,
+                                                            lineNumber: 106,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -704,25 +713,25 @@ function FinWiseGenie() {
                                                             children: "Always Online"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                                            lineNumber: 106,
+                                                            lineNumber: 107,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                                    lineNumber: 104,
+                                                    lineNumber: 105,
                                                     columnNumber: 22
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                            lineNumber: 102,
+                                            lineNumber: 103,
                                             columnNumber: 20
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                    lineNumber: 98,
+                                    lineNumber: 99,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -732,18 +741,18 @@ function FinWiseGenie() {
                                         size: 20
                                     }, void 0, false, {
                                         fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                        lineNumber: 114,
+                                        lineNumber: 115,
                                         columnNumber: 19
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                    lineNumber: 110,
+                                    lineNumber: 111,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                            lineNumber: 97,
+                            lineNumber: 98,
                             columnNumber: 14
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -756,12 +765,12 @@ function FinWiseGenie() {
                                             children: m.content
                                         }, void 0, false, {
                                             fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                            lineNumber: 122,
+                                            lineNumber: 123,
                                             columnNumber: 21
                                         }, this)
                                     }, i, false, {
                                         fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                        lineNumber: 121,
+                                        lineNumber: 122,
                                         columnNumber: 19
                                     }, this)),
                                 loading && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -773,45 +782,45 @@ function FinWiseGenie() {
                                                 className: "w-1.5 h-1.5 rounded-full bg-indigo-500 animate-bounce"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                                lineNumber: 134,
+                                                lineNumber: 135,
                                                 columnNumber: 25
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "w-1.5 h-1.5 rounded-full bg-indigo-500 animate-bounce delay-75"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                                lineNumber: 135,
+                                                lineNumber: 136,
                                                 columnNumber: 25
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "w-1.5 h-1.5 rounded-full bg-indigo-500 animate-bounce delay-150"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                                lineNumber: 136,
+                                                lineNumber: 137,
                                                 columnNumber: 25
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                        lineNumber: 133,
+                                        lineNumber: 134,
                                         columnNumber: 22
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                    lineNumber: 132,
+                                    lineNumber: 133,
                                     columnNumber: 20
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     ref: chatEndRef
                                 }, void 0, false, {
                                     fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                    lineNumber: 140,
+                                    lineNumber: 141,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                            lineNumber: 119,
+                            lineNumber: 120,
                             columnNumber: 14
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -829,7 +838,7 @@ function FinWiseGenie() {
                                             className: "w-full bg-white/5 border border-white/10 rounded-2xl py-3 pl-4 pr-12 text-sm focus:outline-none focus:border-indigo-500/50 transition-all font-jakarta"
                                         }, void 0, false, {
                                             fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                            lineNumber: 146,
+                                            lineNumber: 147,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -840,18 +849,18 @@ function FinWiseGenie() {
                                                 size: 16
                                             }, void 0, false, {
                                                 fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                                lineNumber: 159,
+                                                lineNumber: 160,
                                                 columnNumber: 21
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                            lineNumber: 154,
+                                            lineNumber: 155,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                    lineNumber: 145,
+                                    lineNumber: 146,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -859,34 +868,38 @@ function FinWiseGenie() {
                                     children: "Powered by Gemini 1.5 Pro · Plan Aware"
                                 }, void 0, false, {
                                     fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                                    lineNumber: 162,
+                                    lineNumber: 163,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                            lineNumber: 144,
+                            lineNumber: 145,
                             columnNumber: 14
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                    lineNumber: 87,
+                    lineNumber: 88,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/ui/FinWiseGenie.tsx",
-                lineNumber: 85,
+                lineNumber: 86,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/ui/FinWiseGenie.tsx",
-        lineNumber: 67,
+        lineNumber: 68,
         columnNumber: 5
     }, this);
 }
-_s(FinWiseGenie, "q31egITsIaOvTFpJDeTOl3PXCP8=");
+_s(FinWiseGenie, "HQ5h+fv2rEgaj29xYTk1uI9nsF4=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$providers$2f$AuthProvider$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuth"]
+    ];
+});
 _c = FinWiseGenie;
 var _c;
 __turbopack_context__.k.register(_c, "FinWiseGenie");
