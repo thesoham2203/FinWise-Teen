@@ -48,12 +48,14 @@ export default function OnboardPage() {
   const [step, setStep] = useState(1)
   const [data, setData] = useState<FormData>(initialData)
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const set = (key: keyof FormData, val: string) => setData(prev => ({ ...prev, [key]: val }))
 
   const handleSubmit = async () => {
     if (!user) { router.push('/login'); return }
     setLoading(true)
+    setError('')
     const payload = {
       user_id: user.id,
       full_name: data.full_name,
@@ -88,6 +90,7 @@ export default function OnboardPage() {
       router.push('/dashboard')
     } catch (err) {
       console.error('Plan generation failed:', err)
+      setError('Failed to generate plan. Please ensure the backend is running and try again.')
       setLoading(false)
     }
 
@@ -129,6 +132,11 @@ export default function OnboardPage() {
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.25 }}
             >
+              {error && (
+                <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-sm">
+                  {error}
+                </div>
+              )}
               {/* Step 1: About You */}
               {step === 1 && (
                 <div>

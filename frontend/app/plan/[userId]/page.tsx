@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { use } from 'react'
 import { motion } from 'framer-motion'
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts'
 import { TrendingUp, Share2 } from 'lucide-react'
@@ -14,7 +15,8 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8
 
 const COLORS = ['#6366F1', '#10B981', '#F59E0B', '#EC4899', '#14B8A6', '#8B5CF6', '#F97316', '#06B6D4']
 
-export default function SharedPlanPage({ params }: { params: { userId: string } }) {
+export default function SharedPlanPage({ params: paramsPromise }: { params: Promise<{ userId: string }> }) {
+  const params = use(paramsPromise)
   const [plan, setPlan] = useState<any>(null)
   const [profile, setProfile] = useState<any>(null)
   const [loading, setLoading] = useState(true)

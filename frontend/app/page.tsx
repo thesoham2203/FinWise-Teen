@@ -1,8 +1,11 @@
 'use client'
 
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight, TrendingUp, Brain, Shield, Sparkles, Star, ChevronRight } from 'lucide-react'
+import { useAuth } from '@/components/providers/AuthProvider'
 import Navbar from '@/components/Navbar'
 import BrandLogo from '@/components/BrandLogo'
 import GlowCard from '@/components/ui/GlowCard'
@@ -53,6 +56,17 @@ const testimonials = [
 ]
 
 export default function LandingPage() {
+  const { user, loading } = useAuth()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!loading && user) {
+      router.push('/dashboard')
+    }
+  }, [user, loading, router])
+
+  if (loading) return null // Optional: add a loader here
+
   return (
     <main className="min-h-screen overflow-x-hidden">
       <Navbar />
