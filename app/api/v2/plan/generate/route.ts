@@ -78,7 +78,7 @@ Rules:
 - Badge criteria: "Emergency Expert" if emergency fund >= 6 months, "High Flyer" if equity > 60%, "Smart Saver" if savings rate > 30%
 - Return ONLY raw JSON, nothing else`
 
-    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-pro' })
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-pro' })
     const result = await model.generateContent(prompt)
     const text = result.response.text().trim()
 
