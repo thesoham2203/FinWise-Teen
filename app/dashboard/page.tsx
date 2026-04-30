@@ -86,9 +86,16 @@ export default function DashboardPage() {
       if (res.ok) {
         const data = await res.json()
         setPlan(data)
-        // Cache plan in localStorage for the FinWise Genie chatbot context
+        // Keep localStorage in sync
         localStorage.setItem('finwise_plan', JSON.stringify(data))
         localStorage.setItem('finwise_user_id', user.id)
+      } else {
+        // Supabase fetch failed — fall back to localStorage cache
+        const cached = localStorage.getItem('finwise_plan')
+        const cachedUserId = localStorage.getItem('finwise_user_id')
+        if (cached && cachedUserId === user.id) {
+          setPlan(JSON.parse(cached))
+        }
       }
       const { data: profileData } = await supabase
         .from('user_profiles')

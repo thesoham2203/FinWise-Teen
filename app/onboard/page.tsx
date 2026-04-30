@@ -74,23 +74,38 @@ export default function OnboardPage() {
       target_corpus: parseFloat(data.target_corpus || '0'),
     }
     try {
-      await supabase.from('user_profiles').upsert(payload, { onConflict: 'user_id' })
-      // Trigger plan generation
+      // Save profile to Supabase
+      const { error: profileError } = await supabase.from('user_profiles').upsert(payload, { onConflict: 'user_id' })
+      if (profileError) {
+        console.error('Profile save error:', profileError)
+        setError('Failed to save your profile. Please try again.')
+        setLoading(false)
+        return
+      }
+
+      // Generate AI investment plan
       const planRes = await fetch(`${API_BASE_URL}/plan/generate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       })
-      // Cache plan for FinWise Genie chatbot context
-      if (planRes.ok) {
-        const planData = await planRes.json()
-        localStorage.setItem('finwise_plan', JSON.stringify(planData))
-        localStorage.setItem('finwise_user_id', user.id)
+
+      if (!planRes.ok) {
+        const errData = await planRes.json().catch(() => ({}))
+        setError(errData.error || 'AI plan generation failed. Please try again.')
+        setLoading(false)
+        return
       }
+
+      const planData = await planRes.json()
+      // Always cache the plan in localStorage (works even if DB save failed)
+      localStorage.setItem('finwise_plan', JSON.stringify(planData))
+      localStorage.setItem('finwise_user_id', user.id)
+
       router.push('/dashboard')
     } catch (err) {
-      console.error('Plan generation failed:', err)
-      setError('Failed to generate plan. Please ensure the backend is running and try again.')
+      console.error('Onboard error:', err)
+      setError('Something went wrong. Please check your connection and try again.')
       setLoading(false)
     }
 
