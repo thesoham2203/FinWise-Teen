@@ -1,48 +1,51 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import { useRouter, usePathname } from 'next/navigation'
-import { motion } from 'framer-motion'
-import { LayoutDashboard, User, LogOut, Settings } from 'lucide-react'
-import { useAuth } from '@/components/providers/AuthProvider'
-import BrandLogo from '@/components/BrandLogo'
-
-
+import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
+import { motion } from "framer-motion";
+import { LayoutDashboard, User, LogOut, Settings } from "lucide-react";
+import { useAuth } from "@/components/providers/AuthProvider";
+import BrandLogo from "@/components/BrandLogo";
 
 const navLinks = [
-  { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/profile', label: 'Profile', icon: User },
-  { href: '/settings', label: 'Settings', icon: Settings },
-]
+  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/profile", label: "Profile", icon: User },
+  { href: "/settings", label: "Settings", icon: Settings },
+];
 
 export default function DashboardNav() {
-  const { user, signOut } = useAuth()
-  const router = useRouter()
-  const pathname = usePathname()
+  const { user, signOut } = useAuth();
+  const router = useRouter();
+  const pathname = usePathname();
 
   const handleSignOut = async () => {
-    await signOut()
-    router.push('/')
-  }
+    await signOut();
+    router.push("/");
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass-card !rounded-none !border-t-0 !border-x-0 !bg-opacity-80">
-
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/dashboard" className="flex items-center gap-2 group">
-          <BrandLogo size={28} className="transition-transform group-hover:scale-110" />
-          <span className="font-bold font-jakarta gradient-text text-sm tracking-tight">FinTech Teen</span>
+          <BrandLogo
+            size={28}
+            className="transition-transform group-hover:scale-110"
+          />
+          <span className="font-bold font-jakarta gradient-text text-sm tracking-tight">
+            FinTech Teen
+          </span>
         </Link>
 
-
         <div className="flex items-center gap-1">
-          {navLinks.map(link => (
+          {navLinks.map((link) => (
             <Link key={link.href} href={link.href}>
-              <button className={`flex items-center gap-2 text-sm px-3 py-2 rounded-lg transition-all ${
-                pathname === link.href
-                  ? 'bg-indigo-500/15 text-indigo-300'
-                  : 'text-slate-400 hover:text-white hover:bg-white/5'
-              }`}>
+              <button
+                className={`flex items-center gap-2 text-sm px-3 py-2 rounded-lg transition-all ${
+                  pathname === link.href
+                    ? "bg-indigo-500/15 text-indigo-300"
+                    : "text-slate-400 hover:text-white hover:bg-white/5"
+                }`}
+              >
                 <link.icon size={14} />
                 <span className="hidden md:block">{link.label}</span>
               </button>
@@ -52,7 +55,7 @@ export default function DashboardNav() {
 
         <div className="flex items-center gap-3">
           <div className="hidden md:block text-xs text-slate-500">
-            {user?.email?.split('@')[0]}
+            {user?.email?.split("@")[0]}
           </div>
           <motion.button
             whileHover={{ scale: 1.02 }}
@@ -64,5 +67,5 @@ export default function DashboardNav() {
         </div>
       </div>
     </nav>
-  )
+  );
 }

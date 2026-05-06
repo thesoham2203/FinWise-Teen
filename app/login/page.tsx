@@ -1,44 +1,47 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { TrendingUp, Chrome } from 'lucide-react'
-import { supabase } from '@/lib/supabase'
+import { useState } from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { TrendingUp, Chrome } from "lucide-react";
+import { supabase } from "@/lib/supabase";
 
 export default function LoginPage() {
-  const router = useRouter()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleEmailLogin = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
-    setError('')
-    const { error } = await supabase.auth.signInWithPassword({ email, password })
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
     if (error) {
-      setError(error.message)
-      setLoading(false)
+      setError(error.message);
+      setLoading(false);
     } else {
-      router.push('/dashboard')
+      router.push("/dashboard");
     }
-  }
+  };
 
   const handleGoogleLogin = async () => {
-    setLoading(true)
-    setError('')
+    setLoading(true);
+    setError("");
     const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
+      provider: "google",
       options: { redirectTo: `${window.location.origin}/dashboard` },
-    })
+    });
     if (error) {
-      setError(error.message)
-      setLoading(false)
+      setError(error.message);
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <div className="min-h-screen bg-[#080B14] flex items-center justify-center px-4 relative">
@@ -56,11 +59,15 @@ export default function LoginPage() {
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center">
               <TrendingUp size={16} />
             </div>
-            <span className="font-bold font-jakarta gradient-text">FinTech Teen</span>
+            <span className="font-bold font-jakarta gradient-text">
+              FinTech Teen
+            </span>
           </div>
 
           <h1 className="text-2xl font-bold font-jakarta mb-1">Welcome back</h1>
-          <p className="text-slate-400 text-sm mb-8">Sign in to see your investment plan</p>
+          <p className="text-slate-400 text-sm mb-8">
+            Sign in to see your investment plan
+          </p>
 
           {/* Google OAuth */}
           <button
@@ -80,7 +87,9 @@ export default function LoginPage() {
           {/* Email form */}
           <form onSubmit={handleEmailLogin} className="space-y-4">
             <div>
-              <label className="block text-sm text-slate-400 mb-1.5">Email</label>
+              <label className="block text-sm text-slate-400 mb-1.5">
+                Email
+              </label>
               <input
                 type="email"
                 value={email}
@@ -91,7 +100,9 @@ export default function LoginPage() {
               />
             </div>
             <div>
-              <label className="block text-sm text-slate-400 mb-1.5">Password</label>
+              <label className="block text-sm text-slate-400 mb-1.5">
+                Password
+              </label>
               <input
                 type="password"
                 value={password}
@@ -108,19 +119,26 @@ export default function LoginPage() {
               </div>
             )}
 
-            <button type="submit" disabled={loading} className="btn-primary w-full">
-              {loading ? 'Signing in...' : 'Sign In'}
+            <button
+              type="submit"
+              disabled={loading}
+              className="btn-primary w-full"
+            >
+              {loading ? "Signing in..." : "Sign In"}
             </button>
           </form>
 
           <p className="text-center text-sm text-slate-500 mt-6">
-            Don&#39;t have an account?{' '}
-            <Link href="/signup" className="text-indigo-400 hover:text-indigo-300">
+            Don&#39;t have an account?{" "}
+            <Link
+              href="/signup"
+              className="text-indigo-400 hover:text-indigo-300"
+            >
               Sign up free
             </Link>
           </p>
         </div>
       </motion.div>
     </div>
-  )
+  );
 }
