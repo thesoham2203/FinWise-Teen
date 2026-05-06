@@ -50,7 +50,7 @@ const investmentTypes = [
 ]
 
 const testimonials = [
-  { name: 'Arjun, 19', text: 'Started SIPs at ₹2K/month. FinWise showed me I can retire by 48 if I stay consistent!', stars: 5 },
+  { name: 'Arjun, 19', text: 'Started SIPs at ₹2K/month. FinTech showed me I can retire by 48 if I stay consistent!', stars: 5 },
   { name: 'Priya, 23', text: 'Never knew about REITs or P2P lending. This app opened up a whole new world of investing.', stars: 5 },
   { name: 'Rohan, 17', text: 'Even as a student with ₹5000/month income, I have a proper financial plan now.', stars: 5 },
 ]

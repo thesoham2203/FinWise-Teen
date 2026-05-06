@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
     const monthly_investment = Math.max(0, monthly_income - (monthly_expenses || 0))
     const years_to_invest = Math.max(1, (retirement_age || 60) - (age || 20))
 
-    const prompt = `You are FinWise Teen, an expert AI financial advisor for young Indians. Generate a comprehensive, personalised investment plan.
+    const prompt = `You are FinTech Teen, an expert AI financial advisor for young Indians. Generate a comprehensive, personalised investment plan.
 
 User Profile:
 - Name: ${full_name}, Age: ${age}

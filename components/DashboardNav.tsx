@@ -31,7 +31,7 @@ export default function DashboardNav() {
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/dashboard" className="flex items-center gap-2 group">
           <BrandLogo size={28} className="transition-transform group-hover:scale-110" />
-          <span className="font-bold font-jakarta gradient-text text-sm tracking-tight">FinWise Teen</span>
+          <span className="font-bold font-jakarta gradient-text text-sm tracking-tight">FinTech Teen</span>
         </Link>
 
 

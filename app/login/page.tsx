@@ -56,7 +56,7 @@ export default function LoginPage() {
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center">
               <TrendingUp size={16} />
             </div>
-            <span className="font-bold font-jakarta gradient-text">FinWise Teen</span>
+            <span className="font-bold font-jakarta gradient-text">FinTech Teen</span>
           </div>
 
           <h1 className="text-2xl font-bold font-jakarta mb-1">Welcome back</h1>

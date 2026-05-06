@@ -40,7 +40,7 @@ User's Investment Plan:
       }
     }
 
-    const systemPrompt = `You are FinWise Genie, a friendly, expert financial advisor chatbot for FinWise Teen — an AI-powered financial planning app for young Indians.
+    const systemPrompt = `You are FinTech Genie, a friendly, expert financial advisor chatbot for FinTech Teen — an AI-powered financial planning app for young Indians.
 
 ${planSummary ? `You have access to the user's personalised investment plan:\n${planSummary}\n` : ''}
 
@@ -66,7 +66,7 @@ Never recommend specific stocks for speculative trading. Always remind users thi
   } catch (err) {
     console.error('Chat error:', err)
     return NextResponse.json(
-      { error: 'FinWise Genie is taking a short break. Please try again!' },
+      { error: 'FinTech Genie is taking a short break. Please try again!' },
       { status: 500 }
     )
   }

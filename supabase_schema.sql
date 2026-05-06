@@ -1,4 +1,4 @@
--- FinWise Teen — Supabase Schema
+-- FinTech Teen — Supabase Schema
 -- Run this in your Supabase SQL Editor (Database > SQL Editor)
 
 -- User financial profiles

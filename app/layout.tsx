@@ -13,7 +13,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "FinWise Teen - Your Money, Your Future",
+  title: "FinTech Teen - Your Money, Your Future",
   description:
     "AI-powered financial planning for young Indians. Get personalized investment advice across stocks, mutual funds, bonds, gold, and more.",
   keywords:
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "FinWise Teen",
+    title: "FinTech Teen",
     description: "Start your wealth journey today - built for young India.",
     type: "website",
   },
